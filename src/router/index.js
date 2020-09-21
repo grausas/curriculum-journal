@@ -11,6 +11,12 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
+    path: "/viewgroups",
+    name: "View Groups",
+    component: () =>
+      import(/* webpackChunkName: "viewgroups" */ "../views/ViewGroups.vue"),
+  },
+  {
     path: "/addgroup",
     name: "Add Group",
     component: () =>
