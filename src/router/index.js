@@ -23,6 +23,12 @@ const routes = [
       import(/* webpackChunkName: "viewgroups" */ "../views/ViewGroups.vue"),
   },
   {
+    path: "/editgroup/:id",
+    name: "Edit Group",
+    component: () =>
+      import(/* webpackChunkName: "editgroup" */ "../views/EditGroup.vue"),
+  },
+  {
     path: "/filljournal",
     name: "Fill Journal",
     component: () =>

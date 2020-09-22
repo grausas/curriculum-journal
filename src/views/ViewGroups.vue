@@ -13,8 +13,8 @@
       <thead>
         <tr>
           <th>Group Name</th>
-          <th>Children in groups</th>
-          <th>Edit</th>
+          <th>Children in group</th>
+          <th>Edit Group</th>
         </tr>
       </thead>
       <tbody>
@@ -26,11 +26,8 @@
             {{ group.children }}
           </td>
           <td>
-            {{ group.distance }}
+            <router-link :to="/editgroup/ + group.id">Edit</router-link>
           </td>
-          <!-- <td>
-            <router-link :to="/editstudent/ + group.id">Edit</router-link>
-          </td> -->
         </tr>
       </tbody>
     </table>
@@ -57,16 +54,6 @@ export default {
     };
   },
   beforeMount() {
-    //   firebase
-    //     .firestore()
-    //     .collection("groups")
-    //     .doc(this.$route.params.id)
-    //     .get()
-    //     .then((doc) => {
-    //       this.gname = doc.data().gname;
-    //       this.children = doc.data().children;
-    //       this.distance = doc.data().distance;
-    //     });
     firebase
       .firestore()
       .collection("groups")
@@ -77,36 +64,10 @@ export default {
             id: doc.id,
             gname: doc.data().gname,
             children: doc.data().children,
-            distance: doc.data().distance,
           })
         )
       );
   },
-  // methods: {
-  //   editGroup() {
-  //     firebase
-  //       .firestore()
-  //       .collection("groups")
-  //       .doc(this.$route.params.id)
-  //       .set({
-  //         gname: this.gname,
-  //         children: this.children,
-  //         distance: this.distance,
-  //       })
-  //       .then(
-  //         () => {
-  //           this.error = true;
-  //           this.errorType = "is-success";
-  //           this.errorMessage = "You have successfully added a group";
-  //         },
-  //         (error) => {
-  //           this.error = true;
-  //           this.errorType = "is-danger";
-  //           this.errorMessage = error.message;
-  //         }
-  //       );
-  //   },
-  // },
 };
 </script>
 
