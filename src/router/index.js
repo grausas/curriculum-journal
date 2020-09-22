@@ -5,22 +5,22 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/about",
-    name: "About",
+    path: "/viewjournal",
+    name: "View Journal",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  },
-  {
-    path: "/viewgroups",
-    name: "View Groups",
-    component: () =>
-      import(/* webpackChunkName: "viewgroups" */ "../views/ViewGroups.vue"),
+      import(/* webpackChunkName: "viewjournal" */ "../views/ViewJournal.vue"),
   },
   {
     path: "/addgroup",
     name: "Add Group",
     component: () =>
       import(/* webpackChunkName: "addgroup" */ "../views/AddGroup.vue"),
+  },
+  {
+    path: "/viewgroups",
+    name: "View Groups",
+    component: () =>
+      import(/* webpackChunkName: "viewgroups" */ "../views/ViewGroups.vue"),
   },
   {
     path: "/filljournal",
