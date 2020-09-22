@@ -14,6 +14,7 @@
         <tr>
           <th>Group Name</th>
           <th>Children in group</th>
+          <th>Distance km</th>
           <th>Edit Group</th>
         </tr>
       </thead>
@@ -25,6 +26,7 @@
           <td>
             {{ group.children }}
           </td>
+          <td>{{ group.distance + "km" }}</td>
           <td>
             <router-link :to="/editgroup/ + group.id">Edit</router-link>
           </td>
@@ -64,6 +66,7 @@ export default {
             id: doc.id,
             gname: doc.data().gname,
             children: doc.data().children,
+            distance: doc.data().distance,
           })
         )
       );

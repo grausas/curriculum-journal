@@ -36,6 +36,19 @@
         </div>
 
         <div class="field">
+          <label class="label">Distance: </label>
+          <div class="control">
+            <input
+              class="input"
+              id="distance"
+              type="number"
+              v-model="distance"
+              placeholder="Distance"
+            />
+          </div>
+        </div>
+
+        <div class="field">
           <div class="control">
             <button class="button is-success" type="submit">
               <span>Edit Group</span>
@@ -59,6 +72,7 @@ export default {
     return {
       gname: "",
       children: "",
+      distance: "",
       error: false,
       errorType: "",
       errorMessage: "",
@@ -73,6 +87,7 @@ export default {
         .set({
           gname: this.gname,
           children: this.children,
+          distance: this.distance,
         })
         .then(
           () => {
@@ -97,6 +112,7 @@ export default {
       .then((doc) => {
         this.gname = doc.data().gname;
         this.children = doc.data().children;
+        this.distance = doc.data().distance;
       });
   },
 };
