@@ -22,10 +22,10 @@ export default {
   data() {
     return {
       links: [
-        { name: "View Groups", url: "/viewgroups" },
+        { name: "View Journal", url: "/viewjournal" },
         { name: "Add Group", url: "/addgroup" },
         { name: "Fill Journal", url: "/filljournal" },
-        { name: "Edit group", url: "/editgroup" },
+        { name: "View groups", url: "/viewgroups" },
       ],
     };
   },
