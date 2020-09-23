@@ -16,21 +16,50 @@
         </tr>
       </thead>
       <tbody>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="center"><a class="delete is-medium"></a></td>
+        <tr v-for="journal in journals" :key="journal.id">
+          <td>{{ journal.date }}</td>
+          <td>{{ journal.gname }}</td>
+          <td>{{ journal.children }}</td>
+          <td>{{ journal.attended }}</td>
+          <td>{{ journal.distance }}</td>
+          <td>{{ journal.extra }}</td>
+          <td class="center"><a class="delete is-medium"></a></td>
+        </tr>
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
+import firebase from "firebase/app";
+import "firebase/firestore";
+
 export default {
   name: "ViewJournal",
+  data() {
+    return {
+      journals: [],
+    };
+  },
+  beforeMount() {
+    firebase
+      .firestore()
+      .collection("journal")
+      .get()
+      .then((snapshot) =>
+        snapshot.docs.forEach((doc) => {
+          this.journals.push({
+            gname: doc.data().selectedGroup.gname,
+            distance: doc.data().selectedGroup.distance,
+            children: doc.data().selectedGroup.children,
+            id: doc.id,
+            date: doc.data().date,
+            attended: doc.data().childrenattended,
+            extra: doc.data().extra,
+          });
+        })
+      );
+  },
 };
 </script>
 

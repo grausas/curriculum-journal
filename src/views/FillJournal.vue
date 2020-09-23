@@ -18,7 +18,7 @@
                 <option
                   v-for="groupList in groupsList"
                   :key="groupList.id"
-                  :value="groupList.id"
+                  :value="groupList"
                 >
                   {{ groupList.gname }}
                 </option>
@@ -86,7 +86,7 @@ export default {
   components: { Notification },
   data() {
     return {
-      selectedGroup: [],
+      selectedGroup: "",
       date: "",
       childrenattended: "",
       extra: "",
@@ -127,7 +127,7 @@ export default {
           () => {
             this.error = true;
             this.errorType = "is-success";
-            this.errorMessage = "You have successfully filled a journal";
+            this.errorMessage = "You have successfully filled a";
           },
           (error) => {
             this.error = true;
