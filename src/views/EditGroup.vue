@@ -93,7 +93,7 @@ export default {
           () => {
             this.error = true;
             this.errorType = "is-success";
-            this.errorMessage = "You have successfully added a group";
+            this.errorMessage = "You have successfully edited a group";
           },
           (error) => {
             this.error = true;

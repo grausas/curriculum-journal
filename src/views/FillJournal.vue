@@ -127,7 +127,7 @@ export default {
           () => {
             this.error = true;
             this.errorType = "is-success";
-            this.errorMessage = "You have successfully filled a";
+            this.errorMessage = "You have successfully filled a group";
           },
           (error) => {
             this.error = true;

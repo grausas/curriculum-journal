@@ -16,14 +16,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="journal in journals" :key="journal.id">
+        <tr v-for="(journal, index) in journals" :key="journal.id">
           <td>{{ journal.date }}</td>
           <td>{{ journal.gname }}</td>
           <td>{{ journal.children }}</td>
           <td>{{ journal.attended }}</td>
           <td>{{ journal.distance }}</td>
           <td>{{ journal.extra }}</td>
-          <td class="center"><a class="delete is-medium"></a></td>
+          <td class="center">
+            <a
+              class="delete is-medium"
+              @click="deleteJournal(journal.id, index)"
+            ></a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -40,6 +45,18 @@ export default {
     return {
       journals: [],
     };
+  },
+  methods: {
+    deleteJournal(id) {
+      firebase
+        .firestore()
+        .collection("journal")
+        .doc(id)
+        .delete()
+        .then((index) => {
+          this.journals.splice(index, 1);
+        });
+    },
   },
   beforeMount() {
     firebase
