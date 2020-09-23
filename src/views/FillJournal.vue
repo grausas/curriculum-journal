@@ -15,7 +15,11 @@
             <div class="select">
               <select v-model="selectedGroup">
                 <option value="" disabled>Select group</option>
-                <option v-for="groupList in groupsList" :key="groupList.id">
+                <option
+                  v-for="groupList in groupsList"
+                  :key="groupList.id"
+                  :value="groupList.id"
+                >
                   {{ groupList.gname }}
                 </option>
               </select>
@@ -92,6 +96,22 @@ export default {
       errorMessage: "",
     };
   },
+  beforeMount() {
+    firebase
+      .firestore()
+      .collection("groups")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          this.groupsList.push({
+            id: doc.id,
+            gname: doc.data().gname,
+            children: doc.data().children,
+            distance: doc.data().distance,
+          });
+        });
+      });
+  },
   methods: {
     filljournal() {
       firebase
@@ -116,21 +136,6 @@ export default {
           }
         );
     },
-  },
-  beforeMount() {
-    firebase
-      .firestore()
-      .collection("groups")
-      .get()
-      .then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          this.groupsList.push({
-            id: doc.id,
-            gname: doc.data().gname,
-            children: doc.data().children,
-          });
-        });
-      });
   },
 };
 </script>
