@@ -66,7 +66,7 @@
 
         <div class="field">
           <div class="control">
-            <button class="button is-success">
+            <button class="button is-success" :class="loading && 'is-loading'">
               <span>Fill Journal</span>
             </button>
           </div>
@@ -94,6 +94,7 @@ export default {
       error: false,
       errorType: "",
       errorMessage: "",
+      loading: false,
     };
   },
   beforeMount() {
@@ -125,6 +126,7 @@ export default {
         })
         .then(
           () => {
+            this.loading = false;
             this.error = true;
             this.errorType = "is-success";
             this.errorMessage = "You have successfully filled a group";
@@ -133,6 +135,7 @@ export default {
             this.error = true;
             this.errorType = "is-danger";
             this.errorMessage = error.message;
+            this.loading = false;
           }
         );
     },
