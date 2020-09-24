@@ -16,10 +16,11 @@
           <th>Children in group</th>
           <th>Distance km</th>
           <th>Edit Group</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="group in groups" :key="group.id">
+        <tr v-for="(group, index) in groups" :key="group.id">
           <td>
             {{ group.gname }}
           </td>
@@ -29,6 +30,12 @@
           <td>{{ group.distance + "km" }}</td>
           <td>
             <router-link :to="/editgroup/ + group.id">Edit</router-link>
+          </td>
+          <td>
+            <a
+              class="delete is-medium"
+              @click="deleteGroup(group.id, index)"
+            ></a>
           </td>
         </tr>
       </tbody>
@@ -55,6 +62,16 @@ export default {
       errorMessage: "",
     };
   },
+  methods: {
+    deleteGroup(id, index) {
+      this.groups.splice(index, 1);
+      firebase
+        .firestore()
+        .collection("groups")
+        .doc(id)
+        .delete();
+    },
+  },
   beforeMount() {
     firebase
       .firestore()
@@ -75,10 +92,17 @@ export default {
 </script>
 
 <style scoped>
+table > tbody > tr > td:last-child {
+  text-align: center;
+}
 form {
   margin: 0 auto;
 }
 .field {
   width: 50%;
+}
+
+.delete {
+  background: red;
 }
 </style>
