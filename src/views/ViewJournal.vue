@@ -7,7 +7,7 @@
           type="text"
           class="input"
           v-model="search"
-          placeholder="Search by group name"
+          placeholder="Search by group name.."
         />
       </div>
     </div>
@@ -74,12 +74,6 @@ export default {
         .doc(id)
         .delete();
     },
-    // filter(search) {
-    //   this.journals.filter((journal) => {
-    //     console.log(this.search);
-    //     journal.gname.toLowerCase().includes(search.toLowerCase());
-    //   });
-    // },
   },
   beforeMount() {
     firebase
