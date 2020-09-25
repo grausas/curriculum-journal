@@ -7,13 +7,14 @@
           type="text"
           class="input"
           v-model="search"
-          placeholder="Search by group name.."
+          placeholder="Filter by group name..."
         />
       </div>
     </div>
-    <table
-      class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
-    >
+    <button class="button is-small is-success" @click="sortBy()">
+      Sort
+    </button>
+    <table class="table is-striped is-narrow ">
       <thead>
         <tr>
           <th>Date</th>
@@ -31,13 +32,14 @@
           <td>{{ journal.gname }}</td>
           <td>{{ journal.children }}</td>
           <td>{{ journal.attended }}</td>
-          <td>{{ journal.distance }}</td>
+          <td>{{ journal.distance + "km" }}</td>
           <td>{{ journal.extra }}</td>
           <td>
             <a
-              class="delete is-medium"
+              class="button is-small is-danger"
               @click="deleteJournal(journal.id, index)"
-            ></a>
+              >Delete</a
+            >
           </td>
         </tr>
       </tbody>
@@ -64,17 +66,34 @@ export default {
       });
     },
   },
-
   methods: {
     deleteJournal(id, index) {
-      this.journals.splice(index, 1);
       firebase
         .firestore()
         .collection("journal")
         .doc(id)
-        .delete();
+        .delete()
+        .then(() => {
+          this.journals.splice(index, 1);
+        });
+    },
+    sortBy() {
+      let assending = false;
+      this.journals = this.journals.sort((x, y) => {
+        let a = x.gname.toLowerCase();
+        let b = y.gname.toLowerCase();
+        if (assending) {
+          return a > b ? 1 : -1;
+        } else {
+          return a > b ? -1 : 1;
+        }
+      });
+      console.log(assending);
+
+      assending = !assending;
     },
   },
+
   beforeMount() {
     firebase
       .firestore()
@@ -102,11 +121,11 @@ table > tbody > tr > td:last-child {
   text-align: center;
 }
 
-a {
-  background: red;
+input {
+  max-width: 30%;
 }
 
-.input {
-  max-width: 30%;
+input:focus {
+  background-color: rgb(198, 237, 250);
 }
 </style>

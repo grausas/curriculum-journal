@@ -7,9 +7,10 @@
       :message="errorMessage"
     />
     <h1 class="subtitle">View Groups</h1>
-    <table
-      class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
-    >
+    <button class="button is-small is-success" @click="sortBy()">
+      Sort
+    </button>
+    <table class="table is-striped is-narrow ">
       <thead>
         <tr>
           <th>Group Name</th>
@@ -29,13 +30,18 @@
           </td>
           <td>{{ group.distance + "km" }}</td>
           <td>
-            <router-link :to="/editgroup/ + group.id">Edit</router-link>
+            <router-link
+              class="button is-small is-success"
+              :to="/editgroup/ + group.id"
+              >Edit</router-link
+            >
           </td>
           <td>
             <a
-              class="delete is-medium"
+              class="button is-small is-danger"
               @click="deleteGroup(group.id, index)"
-            ></a>
+              >Delete</a
+            >
           </td>
         </tr>
       </tbody>
@@ -71,6 +77,21 @@ export default {
         .doc(id)
         .delete();
     },
+    sortBy() {
+      let assending = false;
+      this.groups = this.groups.sort((x, y) => {
+        let a = x.gname.toLowerCase();
+        let b = y.gname.toLowerCase();
+        if (assending) {
+          return a > b ? 1 : -1;
+        } else {
+          return a > b ? -1 : 1;
+        }
+      });
+      console.log(assending);
+
+      assending = !assending;
+    },
   },
   beforeMount() {
     firebase
@@ -100,9 +121,5 @@ form {
 }
 .field {
   width: 50%;
-}
-
-.delete {
-  background: red;
 }
 </style>

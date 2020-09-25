@@ -89,7 +89,7 @@ export default {
         .firestore()
         .collection("groups")
         .add({
-          gname: this.gname,
+          gname: `${this.gname.charAt(0).toUpperCase() + this.gname.slice(1)}`,
           children: this.children,
           distance: this.distance,
         })
