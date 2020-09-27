@@ -1,7 +1,20 @@
 <template>
   <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="container">
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div
+        class="navbar-burger"
+        @click="showNav = !showNav"
+        :class="{ 'is-active': showNav }"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div
+        id="navbarBasicExample"
+        class="navbar-menu"
+        :class="{ 'is-active': showNav }"
+      >
         <div class="navbar-start">
           <router-link
             class="navbar-item"
@@ -21,8 +34,9 @@
 export default {
   data() {
     return {
+      showNav: false,
       links: [
-        { name: "View Journal", url: "/viewjournal" },
+        { name: "View Journal", url: "/" },
         { name: "Add Group", url: "/addgroup" },
         { name: "Fill Journal", url: "/filljournal" },
         { name: "View groups", url: "/viewgroups" },
@@ -33,7 +47,7 @@ export default {
 </script>
 
 <style scoped>
-.navbar-item:first-child {
+.navbar-start.navbar-item:first-child {
   padding-left: 0;
 }
 </style>
