@@ -79,13 +79,13 @@ export default {
     },
     sortBy() {
       let assending = false;
-      this.groups = this.groups.sort((x, y) => {
+      this.groups.sort((x, y) => {
         let a = x.gname.toLowerCase();
         let b = y.gname.toLowerCase();
         if (assending) {
-          return a > b ? 1 : -1;
+          return a < b ? 1 : -1;
         } else {
-          return a > b ? -1 : 1;
+          return a < b ? -1 : 1;
         }
       });
       console.log(assending);
@@ -107,12 +107,19 @@ export default {
             distance: doc.data().distance,
           })
         )
-      );
+      )
+      .then(() => {
+        this.groups.sort((a, b) => (a.gname > b.gname ? -1 : 1));
+      });
   },
 };
 </script>
 
 <style scoped>
+table {
+  margin-top: 10px;
+}
+
 table > tbody > tr > td:last-child {
   text-align: center;
 }
@@ -120,6 +127,67 @@ form {
   margin: 0 auto;
 }
 .field {
-  width: 50%;
+  max-width: 50%;
+}
+@media only screen and (max-width: 850px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    border: 1px solid #ccc;
+  }
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 200px;
+    margin-left: 150px;
+  }
+  td:before {
+    position: absolute;
+    left: 6px;
+    width: 200px;
+    padding-right: 40px;
+    white-space: nowrap;
+    margin-left: -150px;
+  }
+  td:nth-of-type(1):before {
+    content: "Group Name:";
+  }
+  td:nth-of-type(2):before {
+    content: "Children in group:";
+  }
+  td:nth-of-type(3):before {
+    content: "Distance(km):";
+  }
+  td:nth-of-type(4):before {
+    content: "Edit Group:";
+  }
+  td:nth-of-type(5):before {
+    content: "Delete:";
+  }
+
+  table > tbody > tr > td:last-child {
+    text-align: left;
+    column-span: all;
+  }
+
+  table > thead > tr > th:last-child {
+    text-align: left;
+  }
+
+  input {
+    max-width: 100%;
+  }
 }
 </style>
