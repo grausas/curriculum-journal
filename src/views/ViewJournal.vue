@@ -11,8 +11,11 @@
         />
       </div>
     </div>
-    <button class="button is-small is-success" @click="sortBy()">
+    <button class="button is-small is-success has-icons-left" @click="sortBy()">
       Sort by date
+      <span class="icon is-small is-left">
+        <i class="fa fa-sort-desc" aria-hidden="true"></i>
+      </span>
     </button>
     <table class="table is-striped is-narrow">
       <thead>
@@ -84,16 +87,14 @@ export default {
     sortBy() {
       let assending = false;
       this.journals.sort((x, y) => {
-        let a = x.gname.toLowerCase();
-        let b = y.gname.toLowerCase();
+        let a = x.date;
+        let b = y.date;
         if (assending) {
           return a < b ? 1 : -1;
         } else {
           return a < b ? -1 : 1;
         }
       });
-      console.log(assending);
-
       assending = !assending;
     },
   },
@@ -117,7 +118,7 @@ export default {
         })
       )
       .then(() => {
-        this.journals.sort((a, b) => (a.gname > b.gname ? -1 : 1));
+        this.journals.sort((a, b) => (a.date > b.date ? -1 : 1));
       });
   },
 };
@@ -139,6 +140,10 @@ input {
 
 input:focus {
   background-color: rgb(198, 237, 250);
+}
+
+.button .icon:first-child:last-child {
+  margin-left: 0px;
 }
 
 @media only screen and (max-width: 850px) {

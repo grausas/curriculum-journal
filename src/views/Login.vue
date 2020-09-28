@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <h1 class="subtitle">Sign in with email</h1>
     <Notification
       v-if="error"
       v-on:close="error = false"
@@ -9,25 +10,34 @@
     <form v-on:submit.prevent="login">
       <div class="field">
         <label class="label">Email:</label>
-        <div class="control">
+        <div class="control has-icons-left has-icons-right">
           <input
             class="input"
             type="email"
             v-model="email"
             placeholder="mail@mail.com"
           />
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
         </div>
       </div>
 
       <div class="field">
         <label class="label">Password:</label>
-        <div class="control">
+        <div class="control has-icons-left">
           <input
             class="input"
             v-model="password"
             type="password"
             placeholder="Password"
           />
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
         </div>
       </div>
 
@@ -86,8 +96,23 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
+
 form {
-  width: 20%;
+  width: 30%;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+form > .field:last-child {
+  text-align: center;
+}
+
+@media only screen and (max-width: 850px) {
+  form {
+    width: 80%;
+  }
 }
 </style>

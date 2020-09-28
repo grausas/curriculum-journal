@@ -104,6 +104,9 @@ export default {
 
   .navbar-menu.is-active {
     width: 50%;
+    margin: 0 auto;
+    margin-left: 0;
+    display: inline-block;
   }
 }
 </style>

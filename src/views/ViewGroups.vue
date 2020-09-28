@@ -7,8 +7,11 @@
       :message="errorMessage"
     />
     <h1 class="subtitle">View Groups</h1>
-    <button class="button is-small is-success" @click="sortBy()">
-      Sort
+    <button class="button is-small is-success has-icons-left" @click="sortBy()">
+      Sort by group name
+      <span class="icon is-small is-left">
+        <i class="fa fa-sort-desc" aria-hidden="true"></i>
+      </span>
     </button>
     <table class="table is-striped is-narrow ">
       <thead>
@@ -33,8 +36,8 @@
             <router-link
               class="button is-small is-success"
               :to="/editgroup/ + group.id"
-              >Edit</router-link
-            >
+              >Edit
+            </router-link>
           </td>
           <td>
             <a
@@ -129,6 +132,11 @@ form {
 .field {
   max-width: 50%;
 }
+
+.button .icon:first-child:last-child {
+  margin-left: 5px;
+}
+
 @media only screen and (max-width: 850px) {
   table,
   thead,
