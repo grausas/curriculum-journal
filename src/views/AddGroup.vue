@@ -119,4 +119,10 @@ form {
 .field {
   width: 50%;
 }
+
+@media only screen and (max-width: 850px) {
+  .field {
+    width: 100%;
+  }
+}
 </style>

@@ -7,13 +7,13 @@
       :message="errorMessage"
     />
     <div class="container">
-      <h1 class="subtitle">Fill Group</h1>
+      <h1 class="subtitle">Fill Journal</h1>
       <form v-on:submit.prevent="filljournal">
         <div class="field">
           <label class="label">Group name: </label>
           <div class="control">
             <div class="select">
-              <select v-model="selectedGroup">
+              <select v-model="selectedGroup" required>
                 <option value="" disabled>Select group</option>
                 <option
                   v-for="groupList in groupsList"
@@ -149,5 +149,11 @@ form {
 }
 .field {
   width: 50%;
+}
+@media only screen and (max-width: 850px) {
+  .field,
+  .option {
+    width: 100%;
+  }
 }
 </style>

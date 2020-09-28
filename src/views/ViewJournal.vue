@@ -169,6 +169,7 @@ input:focus {
     position: relative;
     padding-left: 200px;
     margin-left: 150px;
+    height: 35px;
   }
   td:before {
     position: absolute;
@@ -202,7 +203,6 @@ input:focus {
 
   table > tbody > tr > td:last-child {
     text-align: left;
-    column-span: all;
   }
 
   table > thead > tr > th:last-child {
