@@ -75,14 +75,16 @@ export default {
   },
   methods: {
     deleteJournal(id, index) {
-      firebase
-        .firestore()
-        .collection("journal")
-        .doc(id)
-        .delete()
-        .then(() => {
-          this.journals.splice(index, 1);
-        });
+      if (window.confirm("Do you really want to delete?")) {
+        firebase
+          .firestore()
+          .collection("journal")
+          .doc(id)
+          .delete()
+          .then(() => {
+            this.journals.splice(index, 1);
+          });
+      }
     },
     sortBy() {
       let assending = false;
@@ -211,6 +213,10 @@ input:focus {
 
   input {
     max-width: 100%;
+  }
+
+  tr {
+    margin-bottom: 10px;
   }
 }
 </style>

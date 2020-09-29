@@ -73,12 +73,16 @@ export default {
   },
   methods: {
     deleteGroup(id, index) {
-      this.groups.splice(index, 1);
-      firebase
-        .firestore()
-        .collection("groups")
-        .doc(id)
-        .delete();
+      if (window.confirm("Do you really want to delete?")) {
+        firebase
+          .firestore()
+          .collection("groups")
+          .doc(id)
+          .delete()
+          .then(() => {
+            this.groups.splice(index, 1);
+          });
+      }
     },
     sortBy() {
       let assending = false;
@@ -91,7 +95,6 @@ export default {
           return a < b ? -1 : 1;
         }
       });
-      console.log(assending);
 
       assending = !assending;
     },
@@ -196,6 +199,10 @@ form {
 
   input {
     max-width: 100%;
+  }
+
+  tr {
+    margin-bottom: 10px;
   }
 }
 </style>
