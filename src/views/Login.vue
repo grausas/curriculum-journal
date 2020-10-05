@@ -104,10 +104,17 @@ form {
   border: 1px solid rgba(0, 0, 0, 0.24);
   padding: 20px;
   border-radius: 20px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 form > .field:last-child {
   text-align: center;
+}
+
+.button {
+  width: 100%;
 }
 
 @media only screen and (max-width: 850px) {
