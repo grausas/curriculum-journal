@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h1 class="subtitle">Sign in with email</h1>
+    <h2 class="subtitle">Sign in with email</h2>
     <Notification
       v-if="error"
       v-on:close="error = false"

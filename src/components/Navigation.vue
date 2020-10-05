@@ -80,9 +80,6 @@ export default {
 </script>
 
 <style scoped>
-.navbar-item:first-child {
-  padding-left: 0;
-}
 @media only screen and (max-width: 1020px) {
   .navbar-link,
   a.navbar-item:first-child {
