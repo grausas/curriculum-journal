@@ -80,6 +80,31 @@ export default {
 </script>
 
 <style scoped>
+.navbar-start > .navbar-item {
+  position: relative;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.navbar-start > .navbar-item::after {
+  content: "";
+  position: absolute;
+  background-color: red;
+  bottom: 0;
+  right: 0;
+  left: 0%;
+  margin: 0;
+  height: 7%;
+  width: 100%;
+  transition: 0.3s ease-in-out;
+  transform: translateX(100%);
+}
+
+.navbar-item:hover::after {
+  transform: translateX(0%);
+  color: blue;
+}
+
 @media only screen and (max-width: 1020px) {
   .navbar-link,
   a.navbar-item:first-child {
